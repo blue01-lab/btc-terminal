@@ -31,16 +31,23 @@ h1 {
 <div id="price">Loading...</div>
 
 <script>
-async function loadBTC() {
-  try {
-    const res = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT");
-    const data = await res.json();
+function loadBTC() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT", true);
 
-    document.getElementById("price").innerText =
-      "$" + parseFloat(data.price).toFixed(2);
-  } catch (e) {
-    document.getElementById("price").innerText = "NO DATA";
-  }
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        document.getElementById("price").innerText =
+          "$" + parseFloat(data.price).toFixed(2);
+      } else {
+        document.getElementById("price").innerText = "NO DATA";
+      }
+    }
+  };
+
+  xhr.send();
 }
 
 loadBTC();
