@@ -10,7 +10,7 @@ body {
   color: #00ff00;
   font-family: monospace;
   text-align: center;
-  padding-top: 50px;
+  padding-top: 60px;
 }
 
 h1 {
@@ -18,7 +18,7 @@ h1 {
 }
 
 #price {
-  font-size: 45px;
+  font-size: 50px;
   margin-top: 20px;
 }
 </style>
@@ -28,22 +28,10 @@ h1 {
 
 <h1>BITCOIN TERMINAL</h1>
 <div>BTC / USD</div>
-<div id="price">Loading...</div>
 
-<script>
-var price = 65000;
+<div id="price">CHARGEMENT SUR PC...</div>
 
-function update() {
-  // simulation légère de variation
-  price = price + (Math.random() * 40 - 20);
-
-  document.getElementById("price").innerText =
-    "$" + price.toFixed(2);
-}
-
-update();
-setInterval(update, 3000);
-</script>
+<p style="margin-top:40px;">mode compatible flip phone</p>
 
 </body>
 </html>
