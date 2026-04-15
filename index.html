@@ -33,12 +33,13 @@ h1 {
 <script>
 async function loadBTC() {
   try {
-    const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice/USD.json");
+    const res = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT");
     const data = await res.json();
+
     document.getElementById("price").innerText =
-      "$" + data.bpi.USD.rate;
+      "$" + parseFloat(data.price).toFixed(2);
   } catch (e) {
-    document.getElementById("price").innerText = "ERROR";
+    document.getElementById("price").innerText = "NO DATA";
   }
 }
 
