@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BTC Terminal</title>
+
+<style>
+body {
+  background: black;
+  color: #00ff00;
+  font-family: monospace;
+  text-align: center;
+  padding-top: 50px;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+#price {
+  font-size: 45px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>BITCOIN TERMINAL</h1>
+<div>BTC / USD</div>
+<div id="price">Loading...</div>
+
+<script>
+async function loadBTC() {
+  try {
+    const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice/USD.json");
+    const data = await res.json();
+    document.getElementById("price").innerText =
+      "$" + data.bpi.USD.rate;
+  } catch (e) {
+    document.getElementById("price").innerText = "ERROR";
+  }
+}
+
+loadBTC();
+setInterval(loadBTC, 10000);
+</script>
+
+</body>
+</html>
